@@ -5,7 +5,7 @@ public class Main {
 			Server server = new Server();
 			server.start();
 			
-			Client client = new Client("localhost");
+			Client client = new Client("localhost");//el ip de el servidor
 			client.start();
 			
 			
