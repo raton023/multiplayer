@@ -1,0 +1,54 @@
+public class Server extends Thread 
+{
+
+	private DatagramSocket socket;
+
+	
+	public Server()
+	{
+		try 
+		{
+			this.socket=new DatagramSocket(1331);
+			
+		} 
+		catch (SocketException e) {e.printStackTrace();}
+	}
+
+
+	public void run()
+	{
+		while(true)
+		{
+			byte[] data = new byte[1024];
+			DatagramPacket packet = new DatagramPacket(data, data.length);
+			try 
+			{
+				socket.receive(packet);
+			} catch (IOException e) {e.printStackTrace();}
+			
+			String msg= new String(packet.getData()).trim();
+			
+			System.out.println("CLIENT > ["+packet.getAddress()+":"+packet.getPort()+"] "+msg);
+			
+			if(msg.equals("ping"))//usar 00 01 02 en ves de nombres 
+			{
+				responde(packet,msg);
+			}
+
+			
+			
+		}
+		
+	}
+	
+	public void responde(DatagramPacket packet, String msg) {
+		DatagramPacket packetsend = new DatagramPacket(msg.getBytes(), msg.getBytes().length, packet.getAddress(), packet.getPort());
+		try {
+			socket.send(packetsend);
+		} catch (IOException e) {e.printStackTrace();}
+	}
+	
+	
+	
+	
+}
