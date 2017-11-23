@@ -16,5 +16,5 @@ public class Main {
 			client.sendData("ping".getBytes());
 
 			
-			client2.sendData("ping".getBytes());
+			client2.sendData("auth".getBytes());
 	}
