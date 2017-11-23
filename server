@@ -32,7 +32,12 @@ public class Server extends Thread
 			
 			if(msg.equals("ping"))//usar 00 01 02 en ves de nombres 
 			{
-				responde(packet,msg);
+				responde(packet,"pong");
+			}
+			
+			if(msg.equals("auth"))//usar 00 01 02 en ves de nombres 
+			{
+				responde(packet,"correct");
 			}
 
 			
