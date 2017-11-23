@@ -1,0 +1,20 @@
+public class Main {
+
+	public static void main(String[] args) {
+		
+			Server server = new Server();
+			server.start();
+			
+			Client client = new Client("localhost");
+			client.start();
+			
+			
+			Client client2 = new Client("localhost");
+			client2.start();
+			
+			
+			client.sendData("ping".getBytes());
+
+			
+			client2.sendData("ping".getBytes());
+	}
